@@ -1,6 +1,6 @@
 # Data Analysis of Rockbuster Online Movie Rental Using SQL
 ## Introduction
-Rockbuster Stealth LLC is a movie rental company that used to have stores around the world. Facing stiff competition from streaming services such as Netflix and Amazon Prime, the Rockbuster Stealth management team is planning to use its existing movie licenses to launch an online video rental service in order to stay competitive.
+This is a data analysis project for an online video rental company (Rockbuster Stealth LLC) which plans to use its existing movie licenses to launch an online video rental service to stay competitive. I have conducted the analysis using SQL in PostgreSQL and presented the results to the company's management board.
 
 ## Objective
 Develop an online movie rental strategy for 2020.
