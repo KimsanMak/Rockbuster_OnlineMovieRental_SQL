@@ -1,0 +1,54 @@
+# This SQL query contains a common table expression (CTE) to find out the top 5 customers within the top 10 countries.
+
+WITH top5customers_cte (customer_id, 
+			first_name, 
+			last_name, 
+			country,
+			city) AS
+(SELECT B.customer_id,
+ 		B.first_name,
+ 		B.last_name,
+ 		E.country,
+ 		D.city,
+		SUM(A.amount) AS total_amount_paid
+	FROM payment A
+	JOIN customer B ON A.customer_id = B.customer_id
+	JOIN address C ON B.address_id = C.address_id
+	JOIN city D ON C.city_id = D.city_id
+	JOIN country E ON D.country_id = E.country_id
+		WHERE D.city IN 
+ 		(SELECT D.city
+		FROM customer B
+		JOIN address C ON B.address_id = C.address_id
+		JOIN city D ON C.city_id = D.city_id
+		JOIN country E ON D.country_id = E.country_id
+				WHERE E.country IN (SELECT E.country
+				FROM customer B
+				JOIN address C ON B.address_id = C.address_id
+				JOIN city D ON C.city_id = D.city_id
+				JOIN country E ON D.country_id = E.country_id
+				GROUP BY E.country
+				ORDER BY COUNT(B.customer_id) DESC
+				LIMIT 10)
+		GROUP BY E.country,
+		 	 D.city
+		ORDER BY COUNT(B.customer_id) DESC
+		LIMIT 10)
+	GROUP BY B.customer_id,
+ 		 B.first_name,
+ 		 B.last_name,
+ 		 D.city,
+ 		 E.country
+ 	ORDER BY SUM(A.amount) DESC
+	LIMIT 5) 
+SELECT E.country,
+	COUNT(DISTINCT B.customer_id) AS all_customer_count,
+	COUNT(DISTINCT top5customers_cte) AS top_customer_count
+FROM customer B
+	JOIN address C ON B.address_id = C.address_id
+	JOIN city D ON C.city_id = D.city_id
+	JOIN country E ON D.country_id = E.country_id
+	LEFT JOIN top5customers_cte ON B.customer_id=top5customers_cte.customer_id
+GROUP BY E.country
+ORDER BY all_customer_count DESC
+LIMIT 10;
