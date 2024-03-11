@@ -12,10 +12,10 @@ Key questions to be answered are:
 4. What was the average rental duration for all videos?
 
 ## Data
-The data sets used in this analysis are fabricated and provided by Career Foundry. There are 15 Excel tables; The tables include actor, address, category, city, country, customer, film, film actor, film category, inventory, language, payment, rental, staff, and store. The data was checked, cleaned and manipulated before being used in the analysis. 
+The data sets used in this analysis are fabricated and provided by Career Foundry. There are 15 Excel tables; The tables include actor, address, category, city, country, customer, film, film actor, film category, inventory, language, payment, rental, staff, and store. The data was checked, cleaned, manipulated and analysed using SQL. 
 
 ## Tool
-The different tables were manipulated and analysed using PostgreSQL, an open-source, object-relational database system.
+The different tables were manipulated and analysed using PostgreSQL, an open-source, object-relational database system. The visualizations for the analysis were created and stored in Tableau Public and can be accessed via [visualizations in Tableau](https://public.tableau.com/app/profile/kimsan.mak/viz/Rockbusteronlinemovierental/Story1?publish=yes).
 
-## Visualizations
-The visualizations for the analysis were created and stored in Tableau Public and can be accessed via [visualizations in Tableau](https://public.tableau.com/app/profile/kimsan.mak/viz/Rockbusteronlinemovierental/Story1?publish=yes).
+
+
